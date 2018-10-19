@@ -6,8 +6,8 @@ library(tidyverse)
 source("R/mythemes.R")
 
 fishdata %>% 
-  mutate(length_cat = case_when(length>=200 ~ "Big",
-                                 length<200~ "Small"))->fishdata1 
+  mutate(length_cat = case_when(length>=300 ~ "Big",
+                                 length<300~ "Small"))->fishdata1 
 head(fishdata1)  
   
 
