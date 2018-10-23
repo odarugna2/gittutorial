@@ -1,7 +1,4 @@
-
 .libPaths("C:/Users/Olivia/Documents/R/Rlibrary2")
-fishdata <-read.csv("C:/Users/Olivia/Documents/Classes/NRES 800 Data Managment R/gittutorial/data/Gaeta_etal_CLC_data.csv")
-load("C:/Users/Olivia/Documents/Classes/NRES 800 Data Managment R/gittutorialR/mythemes.R")
 
 library(tidyverse)
 library(readr)
@@ -11,6 +8,10 @@ library(cowplot)
 library(extrafont)
 library(dplyr)
 source("R/mythemes.R")
+
+fishdata <-read.csv("C:/Users/Olivia/Documents/Classes/NRES 800 Data Managment R/gittutorial/data/Gaeta_etal_CLC_data.csv")
+
+fishdata <-read.csv("data/Gaeta_etal_CLC_data.csv")
 
 fishdata %>% 
   mutate(length_cat = case_when(length>=200 ~ "Big",
@@ -25,3 +26,13 @@ ggplot(data=fishdata1)+
   facet_wrap(~length_cat)+
   labs(x="Scale Length", y= "Count")
 
+
+## Chris's modifications
+
+ggplot() +
+  geom_histogram(data = fishdata1, aes(x = scalelength, fill = length_cat), colour = "black", bins = 25) +
+  facet_wrap(~length_cat) +
+  coord_cartesian(ylim = c(0,500), xlim = c(0, 12), expand = FALSE) +
+  theme_classic() +
+  theme(legend.position = "none",
+        panel.spacing = unit(2, "lines"))
